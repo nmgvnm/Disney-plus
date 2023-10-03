@@ -33,7 +33,7 @@
 .banner__button {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
   outline: none;
@@ -79,7 +79,7 @@
     width: auto !important;
   }
   .info {
-    text-align: start;
+    text-align: left;
     padding-right: 1.2rem;
   }
   .space {
@@ -90,3 +90,4 @@
     border-radius: 4px !important;
   }
 }
+

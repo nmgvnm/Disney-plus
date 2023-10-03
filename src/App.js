@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Nav from "./components/Nav";
 import "./App.css"
 import Banner from "./components/Banner";
+import Category from "./components/Category";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Container>
         <Nav />
         <Banner />
+        <Category />
       </Container>
     </div>
   );
