@@ -1,7 +1,8 @@
 import axios from "../../api/axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./SearchPage.css"
+import "./SearchPage.css";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const SearchPage = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -11,14 +12,14 @@ const SearchPage = () => {
   };
 
   let query = useQuery();
-  console.log("query:", query);
   const searchTerm = query.get("q");
-  console.log("searchTerm:", searchTerm);
+  const debouncedSearchTerm = useDebounce(query.get("q"), 500);
+
   useEffect(() => {
-    if (searchTerm) {
-      fetchSearchMovie(searchTerm);
+    if (debouncedSearchTerm) {
+      fetchSearchMovie(debouncedSearchTerm);
     }
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   const fetchSearchMovie = async (searchTerm) => {
     try {
@@ -29,7 +30,6 @@ const SearchPage = () => {
       console.log("error", error);
     }
   };
-  console.log("searchResults:", searchResults);
   // searchTerm에 해당 영화 데이터가 있을 경우
   if (searchResults.length > 0) {
     return (
